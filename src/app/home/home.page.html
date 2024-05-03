@@ -1,35 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search location</ion-title> <!--search bar to search weather in different locations-->
+  </ion-toolbar>
+  <ion-toolbar>
+    <!-- <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="onSearchInput($event)"></ion-searchbar> -->
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="img">
+
+<div id = "settings">   
+   <ion-button (click)="openSettings()">Settings</ion-button> 
+</div>
+
+<div id = "about">   
+  <p [routerLink]="['/about']">About</p>
+</div>
+   
+  <div id="img"><!-- all info in their own divs so i can place them in specific places in .scss -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sky.jpg" height = "1000"/>
   </div>
  
-  <div class="location">
+  <div id="location">
     {{ weather.name }}, {{ weather.sys.country }}
   </div>
 
-  <div class="coords">
-    {{weather.coord.lon}}, {{weather.coord.lat}}
-  </div>
-
-  <div class="weather">
+  <div id="weather">
     {{ weather.main.temp | number:'1.0-0' }}°C 
   </div>
 
-  <div class="description">
+  <div id="description">
     Feels Like: {{ weather.main.feels_like | number:'1.0-0' }}°C. {{ weather.weather[0].main }}, {{ weather.weather[0].description }} 
    </div>
 
-   <div class="mm">
-    <p>Max temperature: {{ weather.main.temp_max | number:'1.0-0' }}°C </p>
-  </div>
- 
-  <div class="details">
+  <div id="details">
     <p>Humidity: {{ weather.main.humidity }}%</p>
     <p>Visibility: {{ weather.visibility / 1000 }} km</p>
     <p>Pressure: {{ weather.main.pressure }} hPa</p>
     <p>Wind Speed: {{ weather.wind.speed }} m/s</p>
   </div>
+
+  <div id = "userCoords">
+    <ion-button color="medium" (click)="getGPS()">Show my coordinates</ion-button>
+    <br>
+    {{lat}}, {{long}}
+    </div>
 
  
 
